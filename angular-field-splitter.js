@@ -31,22 +31,23 @@ angular.module("fieldSplitter", []).
 				pfGlue: "@",
 				pfGlueOriginal: "@"
 			},
-			template: '<input data-ng-keyup="handleKeyup();" data-ng-focus="handleFocus();" data-ng-blur="handleBlur()" type="{{pfType}}" value="{{pfDefaultValue}}" pf-default-value="{{pfDefaultValue}}" maxlength="{{pfMaxLength}}" />',
+			template: '<input data-ng-focus="handleFocus();" data-ng-blur="handleBlur()" type="{{pfType}}" value="{{pfDefaultValue}}" pf-default-value="{{pfDefaultValue}}" maxlength="{{pfMaxLength}}" />',
 			link: function(scope, element, attrs) {
-				scope.handleKeyup = function(){
 
+        element.on('keypress', function() {
 					var field = $(element.children()[0]);
 					$(scope.$parent.originalElement).val(getCombinedInput(scope.$parent, scope.pfGlueOriginal, scope.pfGlue)); //Every time the user adds input, the original field is updated
-
 					setTimeout(function() { $(scope.$parent.originalElement).trigger("input"); }, 10);
-					if(field.val().length == field.attr("maxlength")) {
-						if(!field.hasClass("last-field")) {
-							setTimeout(function() {
-								field.parent().next().children().first().focus();
-							}, 10);
-						}
-					}					
-				};
+          setTimeout(function() { //small delay, so the value is the new one, not the old one 
+           if(field.val().length == field.attr("maxlength")) {
+            if(!field.hasClass("last-field")) {
+              setTimeout(function() {
+                field.parent().next().children().first().focus();
+              }, 10);
+            }
+           }					
+          },10);
+				});
 
 				scope.handleFocus = function() {
 					var $this = $(element.children()[0]);
