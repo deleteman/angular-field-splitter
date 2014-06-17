@@ -1,11 +1,11 @@
 {
-	"name": "angular-field-splitter",
-	"author": "Fernando Doglio <deleteman@gmail.com>",
-	"description": "Angular directive to turn a single field into several fields that remain interconnected",
-	"keywords": ["angular", "form", "field", "split"],
-	"version": "0.1.1",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/deleteman/angular-field-splitter"
-	}
+    "name": "angular-field-splitter",
+    "author": "Fernando Doglio <deleteman@gmail.com>",
+    "description": "Angular directive to turn a single field into several fields that remain interconnected",
+    "keywords": ["angular", "form", "field", "split"],
+    "version": "0.1.2",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/deleteman/angular-field-splitter"
+    }
 }
