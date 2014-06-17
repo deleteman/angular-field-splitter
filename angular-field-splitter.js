@@ -15,8 +15,9 @@ angular.module("fieldSplitter", []).
  		 */
 		function getCombinedInput(scope, glueOriginal, glue) {
 			var inputs = [];
-			$(scope.fields).each(function(i, e) {
-				inputs.push($(e).children().first().val());
+			scope.fields.forEach(function(e, i) {
+                var firstChild = angular.element(e.children()[0]);
+                inputs.push(firstChild.val());
 			});
 			glueOriginal = (glueOriginal.toLowerCase() === "true");
 			return inputs.join((glueOriginal)? glue : "");
@@ -34,15 +35,16 @@ angular.module("fieldSplitter", []).
 			template: '<input data-ng-focus="handleFocus();" data-ng-blur="handleBlur()" type="{{pfType}}" value="{{pfDefaultValue}}" pf-default-value="{{pfDefaultValue}}" maxlength="{{pfMaxLength}}" />',
 			link: function(scope, element, attrs) {
 
-        element.on('keypress', function() {
-					var field = $(element.children()[0]);
-					$(scope.$parent.originalElement).val(getCombinedInput(scope.$parent, scope.pfGlueOriginal, scope.pfGlue)); //Every time the user adds input, the original field is updated
-					setTimeout(function() { $(scope.$parent.originalElement).trigger("input"); }, 10);
+        element.on('keyup', function() {
+					var field = angular.element(element.children()[0]);
+					scope.$parent.originalElement.val(getCombinedInput(scope.$parent, scope.pfGlueOriginal, scope.pfGlue)); //Every time the user adds input, the original field is updated 
+					setTimeout(function() { angular.element(scope.$parent.originalElement).triggerHandler("input"); }, 10);
+
           setTimeout(function() { //small delay, so the value is the new one, not the old one 
            if(field.val().length == field.attr("maxlength")) {
-            if(!field.hasClass("last-field")) {
+            if(!field.parent().hasClass("last-field")) {
               setTimeout(function() {
-                field.parent().next().children().first().focus();
+                field.parent().next().children()[0].focus();
               }, 10);
             }
            }					
@@ -50,7 +52,7 @@ angular.module("fieldSplitter", []).
 				});
 
 				scope.handleFocus = function() {
-					var $this = $(element.children()[0]);
+					var $this = angular.element(element.children()[0]);
 					$this.addClass("active");
 					if($this.val() == $this.attr("pf-default-value")) {
 						$this.val("");
@@ -58,7 +60,7 @@ angular.module("fieldSplitter", []).
 				};
 
 				scope.handleBlur = function() {
-					var $this = $(element.children()[0]);
+					var $this = angular.element(element.children()[0]);
 					if($this.val() == "") {
 						$this.removeClass("active");
 						$this.val($this.attr("pf-default-value"));
@@ -74,6 +76,9 @@ angular.module("fieldSplitter", []).
 			scope.fields = [];
 			for(var idx = 0; idx < totalFields; idx++) {
 				var f = getPartialField(opts, scope, idx);
+                if(idx == totalFields - 1) {
+                    f.addClass('last-field');
+                }
 				scope.fields.push(f);
 				container.append(f);
 				if(idx < totalFields - 1) {
@@ -101,10 +106,9 @@ angular.module("fieldSplitter", []).
 				var DEFAULT_GLUE = "-"; 
 				var DEFAULT_GLUE_ORIGINAL = true;
 
-				var $elem = $(elem);
-				
+				var $elem = elem;
 				var options = {
-					type: $(elem).attr("type"),
+					type: elem.attr("type"),
 					defaultValue: attrs.splitDefaultValue ? attrs.splitDefaultValue : DEFAULT_VALUE,
 					maxLength: attrs.splitMaxLength ? attrs.splitMaxLength : DEFAULT_MAX_LENGTH,
 					numberOfFields: attrs.splitInto ? attrs.splitInto : DEFAULT_NUMBER_OF_FIELDS,
@@ -114,7 +118,7 @@ angular.module("fieldSplitter", []).
 
 				scope.originalElement = $elem;
 				var parentElement = $elem.parent();
-				$elem.hide(); //we hide the original element
+				$elem.css('display', 'none'); //we hide the original element
 
 				createPartialFields(parentElement, options, scope);
 			}
