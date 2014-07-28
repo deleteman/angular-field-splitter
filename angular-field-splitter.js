@@ -112,7 +112,7 @@ angular.module("fieldSplitter", []).
 					defaultValue: attrs.splitDefaultValue ? attrs.splitDefaultValue : DEFAULT_VALUE,
 					maxLength: attrs.splitMaxLength ? attrs.splitMaxLength : DEFAULT_MAX_LENGTH,
 					numberOfFields: attrs.splitInto ? attrs.splitInto : DEFAULT_NUMBER_OF_FIELDS,
-					glue: attrs.splitGlue ? attrs.splitGlue : DEFAULT_GLUE,
+					glue: elem.attr("split-glue") ? elem.attr("split-glue") : DEFAULT_GLUE,
 					glueOriginal: attrs.splitGlueOriginal ? attrs.splitGlueOriginal : DEFAULT_GLUE_ORIGINAL
 				};
 
