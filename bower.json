@@ -1,0 +1,25 @@
+{
+  "name": "angular-field-splitter",
+  "main": "angular-field-splitter.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/deleteman/angular-field-splitter",
+  "authors": [
+    "Fernando Doglio <deleteman@gmail.com>"
+  ],
+  "description": "Angular directive to turn a single field into several fields that remain interconnected",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "angularjs",
+    "splittler"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

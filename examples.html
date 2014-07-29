@@ -1,70 +1,70 @@
 <!doctype html>
 <html ng-app="Test" >
 <head>
-	<title>Field splitter directive - Demo page</title>
-	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>-->
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>	
-	<script type="text/javascript" src="angular-field-splitter.js" ></script>
+    <title>Field splitter directive - Demo page</title>
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>-->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script> 
+    <script type="text/javascript" src="angular-field-splitter.js" ></script>
 
-	<script type="text/javascript">
-		angular.module('Test', ['fieldSplitter']);
+    <script type="text/javascript">
+        angular.module('Test', ['fieldSplitter']);
 
 
-		function TestCtrl($scope) {
-	    $scope.formData = {};
+        function TestCtrl($scope) {
+        $scope.formData = {};
 
-		  $scope.submit = function() {
-		    alert($scope.formData.testField);
-		  }
-     	$scope.test = function() {
-  	  	return '||';
-		  }
-		
-		}
-	</script>
+          $scope.submit = function() {
+            alert($scope.formData.testField);
+          }
+        $scope.test = function() {
+        return '||';
+          }
+        
+        }
+    </script>
   <style type="text/css">
-		* { font-family: "Lucida Sans Unicode","Lucida Grande",Verdana,Arial,Helvetica,sans-serif; color:#333;}
-		#main-wrapper {
-			width:70%;
-			margin:0 auto;
-		}
+        * { font-family: "Lucida Sans Unicode","Lucida Grande",Verdana,Arial,Helvetica,sans-serif; color:#333;}
+        #main-wrapper {
+            width:70%;
+            margin:0 auto;
+        }
 
-		h3 { color: #999; border-bottom:2px solid #999;}
+        h3 { color: #999; border-bottom:2px solid #999;}
 
-		.footer {
-			padding:10px;
-		}
-		.footer b{
-			font-size:11px;
-		}
+        .footer {
+            padding:10px;
+        }
+        .footer b{
+            font-size:11px;
+        }
 
-		.demo_boxes .demo {
-			padding:10px;
-			border-bottom: 3px dashed #999;
-		}
-		.demo p {
-			color:#333;
-		}
+        .demo_boxes .demo {
+            padding:10px;
+            border-bottom: 3px dashed #999;
+        }
+        .demo p {
+            color:#333;
+        }
 
-		.part1, .part2, .part3 {
-			color:#aaa;
-		}
+        .part1, .part2, .part3 {
+            color:#aaa;
+        }
 
-		.part1.active, .part2.active, .part3.active {
-			color:black;
-		}
+        .part1.active, .part2.active, .part3.active {
+            color:black;
+        }
 
-		.code { 
-			background-color:#999;
-			padding:5px;
-			font-size:12px;
-		 }
+        .code { 
+            background-color:#999;
+            padding:5px;
+            font-size:12px;
+         }
 
-		.method { font-weight:bold;}
-		.option { color:white;}
+        .method { font-weight:bold;}
+        .option { color:white;}
 
-		input { width:80px;}
-	</style>
+        input { width:80px;}
+    </style>
 
 </head>
 
@@ -74,50 +74,50 @@
 <h3>Demo page for the directive</h3>
 
 <div class="demo_boxes">
-	<div class="demo">
-		<p>Basic example, using all default values </p>
-		<b>Example #1: </b>
-		<p>
-			<input type="text" id="test" ng-model="formData.testField_1" split-field/>
-		</p>
-		<br/><b>Data saved on ng-model</b>: {{formData.testField_1}}<br/>
-		<i>HTML Code</i>
-		<xmp data-ng-non-bindable>
-			<input type="text" id="test" ng-model="formData.testField_1" split-field/>
-		</xmp>
-		
+    <div class="demo">
+        <p>Basic example, using all default values </p>
+        <b>Example #1: </b>
+        <p>
+            <input type="text" id="test" ng-model="formData.testField_1" split-field/>
+        </p>
+        <br/><b>Data saved on ng-model</b>: {{formData.testField_1}}<br/>
+        <i>HTML Code</i>
+        <xmp data-ng-non-bindable>
+            <input type="text" id="test" ng-model="formData.testField_1" split-field/>
+        </xmp>
+        
 
-	</div>
-	<div class="demo">
-	
-		<b>Example #2: </b>
-		<p>Some static configuration</p>
-		<P>
-				<input type="text" id="test2" split-field split-glue="/" split-max-length="2" split-into="2" split-default-value="___" ng-model="formData.testField"/>
-			</p><br/>
-	Data saved on ng-model: {{formData.testField}}
+    </div>
+    <div class="demo">
+    
+        <b>Example #2: </b>
+        <p>Some static configuration</p>
+        <P>
+                <input type="text" id="test2" split-field split-glue="/" split-max-length="2" split-into="2" split-default-value="___" ng-model="formData.testField"/>
+            </p><br/>
+    Data saved on ng-model: {{formData.testField}}
 <br/>
-				<i>HTML Code</i>
-				<xmp data-ng-non-bindable>
-					<input type="text" id="test2" split-field split-glue="/" split-max-length="2" split-into="2" split-default-value="___" ng-model="formData.testField"/>
+                <i>HTML Code</i>
+                <xmp data-ng-non-bindable>
+                    <input type="text" id="test2" split-field split-glue="/" split-max-length="2" split-into="2" split-default-value="___" ng-model="formData.testField"/>
 
-				</xmp>
-	</div>
-	<div class="demo">
-		<p>Dynamic example. Using functions instead of static values for some of the configuration options</p>
-		<b>Example #3: </b>
-		<p>
-			<input type="text" id="test4" split-field split-glue="-" split-glue-original="false" split-default-value="{{test()}}"  ng-model="formData.testField_3"/></p>
-		<br/>
-		Data svaed on ng-model: {{formData.testField_3}}<br/>
-		<i>HTML Code</i>
-		<xmp ng-non-bindable>
-			<input type="text" id="test4" split-field split-glue="-" split-glue-original="false" split-default-value="{{test()}}"  ng-model="formData.testField_3"/>
-		</xmp>
-	</div>
+                </xmp>
+    </div>
+    <div class="demo">
+        <p>Dynamic example. Using functions instead of static values for some of the configuration options</p>
+        <b>Example #3: </b>
+        <p>
+            <input type="text" id="test4" split-field split-glue=" " split-glue-original="true" split-default-value="{{test()}}"  ng-model="formData.testField_3"/></p>
+        <br/>
+        Data saved on ng-model: {{formData.testField_3}}<br/>
+        <i>HTML Code</i>
+        <xmp ng-non-bindable>
+            <input type="text" id="test4" split-field split-glue="-" split-glue-original="false" split-default-value="{{test()}}"  ng-model="formData.testField_3"/>
+        </xmp>
+    </div>
 
 </div>
 <div class="footer">
-	<span class="contact">Contact the author: <b>deleteman@gmail.com</b></span>
+    <span class="contact">Contact the author: <b>deleteman@gmail.com</b></span>
 </body>
 </html>
