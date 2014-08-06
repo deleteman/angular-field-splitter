@@ -1,6 +1,8 @@
 
 # Field Splitter directive
 
+_For an online example, check out_: http://rawgit.com/deleteman/angular-field-splitter/master/examples.html
+
 Turn a single input field, into a multi-field input. This new field has the following features:
 
 * __Default value__: Allowing for inline labels
